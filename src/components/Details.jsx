@@ -16,7 +16,7 @@ import {
 import { db } from '../firebase'; // Import db from firebase.js
 import { collection, addDoc, query, where, getDocs } from 'firebase/firestore';
 import { auth } from '../firebase';
-
+import { useNavigate } from 'react-router-dom';
 
 // Custom theme with red and black colors
 const theme = createTheme({
@@ -44,6 +44,7 @@ const Details = () => {
   const [selectedBranch, setSelectedBranch] = useState('');
   const [selectedSemester, setSelectedSemester] = useState('');
   const [rollNumber, setRollNumber] = useState('');
+  const navigate = useNavigate();
 
 
   const handleDivisionChange = (event) => setSelectedDivision(event.target.value);
@@ -73,6 +74,7 @@ const Details = () => {
       // If no documents match the query, add the new document
       await addDoc(collection(db, "details"), details);
       console.log("Document added successfully.");
+      navigate('/profile');
     } else {
       console.log("A document with this userId already exists.");
       setAlertOpen(true); // Show the alert

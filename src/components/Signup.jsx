@@ -1,11 +1,13 @@
 import { signOut, getAuth } from "firebase/auth";
 import { signInWithGooglePopup } from "../firebase.js"
+import { useNavigate } from "react-router-dom";
 const Signup = () => {
 
 const SignOutUser = () => {
     const auth = getAuth();
     signOut(auth)
 }
+const navigate = useNavigate();
 const logGoogleUser = async () => {
         const response = await signInWithGooglePopup().then((result) => {
             // Get user data
@@ -15,6 +17,7 @@ const logGoogleUser = async () => {
             if (user.email.endsWith("@somaiya.edu")) {
               // Allow the user to proceed
               console.log("User signed in successfully");
+              navigate('/details');
             } else {
               // Deny access
               console.log("Access denied. Only @somaiya.edu addresses are allowed.");
