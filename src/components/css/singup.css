@@ -1,0 +1,18 @@
+body {
+    margin: 0;
+    display: flex;
+    place-items: center;
+    background-image: url("/bg.jpg");  
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-width: 320px;
+    min-height: 100vh;
+  }
+
+
+  .details-container{
+    top: 50;
+    left: 50%;
+    position: absolute;
+     transform: translate(-50%,-50%); 
+  }

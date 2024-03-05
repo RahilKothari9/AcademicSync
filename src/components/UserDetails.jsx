@@ -1,11 +1,11 @@
-import { Avatar, Box, FormControlLabel, FormLabel, RadioGroup, TextField } from '@mui/material';
+import { Avatar, Box, FormControl, FormControlLabel, FormLabel, InputLabel, MenuItem, RadioGroup, Select, TextField } from '@mui/material';
 import Radio from '@mui/material/Radio';
 import { collection, getDocs } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { db } from '../firebase'; // Import db from firebase.js
 
 //import css
-import './css/userDetails';
+import "./css/userdetailes.css";
 
 
 const UserDetails = () => {
@@ -23,27 +23,21 @@ const UserDetails = () => {
  }, []);
 
  return (
-  <div>
-    {/* <Box>
-      {users.map(user => (
-        <Box key={user.id} sx={{ marginBottom: 2 }}>
-          <Typography variant="h6" color="error">User Details</Typography>
-          <Typography variant="body1" color="error">Division: {user.division}</Typography>
-          <Typography variant="body1" color="error">Subdivision: {user.subdivision}</Typography>
-          <Typography variant="body1" color="error">Branch: {user.branch}</Typography>
-          <Typography variant="body1" color="error">Semester: {user.semester}</Typography>
-          <Typography variant="body1" color="error">User ID: {user.userId}</Typography>
-          <Typography variant="body1" color="error">Roll Number: {user.rollNumber}</Typography>
-        </Box>
-      ))}
-    </Box> */}
+  <div className='whole-body'>
+    
 
 
-    <div >
-        <div className='userIcon'>
-          <Avatar  
-  alt="Remy Sharp"
-  src="/broken-image.jpg"></Avatar>
+    
+        <div className='userIcon' >
+          <Avatar  alt="Remy Sharp"
+            src="/broken-image.jpg" className='avatar'></Avatar>
+            <p className='logout '>LOGOUT</p>
+
+            <ul className='list hide' >
+              <li>HOME</li>
+              <li>PROFILE</li>
+              <li>OPTIONS</li>
+            </ul>
         </div>
 
         <div className='profileContent'>
@@ -52,26 +46,28 @@ const UserDetails = () => {
             <Box
       component="form"
       sx={{
-        '& .MuiTextField-root': { m: 1, width: '25ch' },
+        '& .MuiTextField-root': { m: 1, width: '90%' },
       }}
       noValidate
       autoComplete="off"
     >
-    <div className='name'>
-    <TextField
-          id="standard-helperText"
-          label="Name"
-          
-          variant="standard"
-        />
-    </div>
-      <div className='email'>
-      <TextField
-          id="standard-helperText"
-          label="Email"
-          
-          variant="standard"
-        />
+          <div className='name'>
+          <TextField
+                id="standard-helperText"
+                label="Name"
+                
+                variant="standard"
+              
+
+              />
+          </div>
+            <div className='email'>
+            <TextField
+                id="standard-helperText"
+                label="Email"
+              
+                variant="standard"
+              />
   
       </div>
       
@@ -81,6 +77,8 @@ const UserDetails = () => {
     aria-labelledby="demo-radio-buttons-group-label"
     defaultValue="COMPS"
     name="radio-buttons-group"
+    className='radiogroup'
+  
   >
     <FormControlLabel value="COMPS" control={<Radio />} label="COMPS" />
     <FormControlLabel value="IT" control={<Radio />} label="IT" />
@@ -90,16 +88,36 @@ const UserDetails = () => {
   </RadioGroup>
   
       </div>
-      <div className='roll_no'>
+      <div className='roll_no' >
       <TextField
           id="standard-number"
-          label="Number"
+          label="Roll Number"
           type="number"
-          InputLabelProps={{
-            shrink: true,
-          }}
+          
           variant="standard"
+          defaultValue={users.rollNumber}
         />
+      </div>
+      <div className='semester'>
+      <FormControl sx={{width:"90%"}}  >
+        <InputLabel id="demo-simple-select-label" >SEMESTER</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          
+          label="Age"
+          
+        >
+          <MenuItem value={1}>I</MenuItem>
+          <MenuItem value={2}>II</MenuItem>
+          <MenuItem value={3}>III</MenuItem>
+          <MenuItem value={4}>IV</MenuItem>
+          <MenuItem value={5}>V</MenuItem>
+          <MenuItem value={6}>VI</MenuItem>
+          <MenuItem value={7}>VII</MenuItem>
+          <MenuItem value={8}>VIII</MenuItem>
+        </Select>
+      </FormControl>
       </div>
 
 
@@ -107,9 +125,16 @@ const UserDetails = () => {
     </Box>
             
           </div>
+          <div className='hideFUllscreen navigation'>
+            <ul className='list-mobile' >
+              <li>HOME</li>
+              <li>PROFILE</li>
+              <li>OPTIONS</li>
+            </ul>
+            </div>
         </div>
     </div>
-    </div>
+    
  );
 };
 
