@@ -28,6 +28,7 @@ const theme = createTheme({
       primary: '#FF0000', // Black color
     },
   },
+  
 });
 
 const Details = () => {
@@ -95,12 +96,29 @@ const Details = () => {
         </Typography>
 
         <FormControl fullWidth sx={{ marginBottom: 2 }}>
-          <InputLabel>Branch</InputLabel>
+          <InputLabel sx={{color: "white"}}>Branch</InputLabel>
           <Select
+          labelStyle={{ color: '#ff0000' }}
             value={selectedBranch}
             onChange={handleBranchChange}
             label="Branch"
-            sx={{ width: '100%', '& .MuiOutlinedInput-root': { borderColor: 'primary' } }}
+            sx={{
+              width: '100%',
+              '& .MuiOutlinedInput-root': { borderColor: 'primary' },
+              color: "white",
+            '.MuiOutlinedInput-notchedOutline': {
+              borderColor: 'rgba(228, 219, 233, 0.25)',
+            },
+            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+              borderColor: 'rgba(228, 219, 233, 0.25)',
+            },
+            '&:hover .MuiOutlinedInput-notchedOutline': {
+              borderColor: 'rgba(228, 219, 233, 0.25)',
+            },
+            '.MuiSvgIcon-root ': {
+              fill: "white !important",
+            }
+           }}
           >
             {branches.map((branch) => (
               <MenuItem key={branch} value={branch}>
@@ -111,12 +129,29 @@ const Details = () => {
         </FormControl>
 
         <FormControl fullWidth sx={{ marginBottom: 2 }}>
-          <InputLabel>Semester</InputLabel>
+          <InputLabel sx={{color: "white"}}>Semester</InputLabel>
           <Select
             value={selectedSemester}
             onChange={handleSemesterChange}
             label="Semester"
-            sx={{ width: '100%' }}
+            sx={{
+              width: '100%',
+              '& .MuiOutlinedInput-root': { borderColor: 'primary' },
+              color: "white",
+            '.MuiOutlinedInput-notchedOutline': {
+              borderColor: 'rgba(228, 219, 233, 0.25)',
+            },
+            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+              borderColor: 'rgba(228, 219, 233, 0.25)',
+            },
+            '&:hover .MuiOutlinedInput-notchedOutline': {
+              borderColor: 'rgba(228, 219, 233, 0.25)',
+            },
+            '.MuiSvgIcon-root ': {
+              fill: "white !important",
+            }
+            
+           }}
           >
             {semesters.map((semester) => (
               <MenuItem key={semester} value={semester}>
@@ -127,12 +162,28 @@ const Details = () => {
         </FormControl>
 
         <FormControl fullWidth sx={{ marginBottom: 2 }}>
-          <InputLabel>Division</InputLabel>
+          <InputLabel sx={{color: "white"}}>Division</InputLabel>
           <Select
             value={selectedDivision}
             onChange={handleDivisionChange}
             label="Division"
-            sx={{ width: '100%' }}
+            sx={{
+              width: '100%',
+              '& .MuiOutlinedInput-root': { borderColor: 'primary' },
+              color: "white",
+            '.MuiOutlinedInput-notchedOutline': {
+              borderColor: 'rgba(228, 219, 233, 0.25)',
+            },
+            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+              borderColor: 'rgba(228, 219, 233, 0.25)',
+            },
+            '&:hover .MuiOutlinedInput-notchedOutline': {
+              borderColor: 'rgba(228, 219, 233, 0.25)',
+            },
+            '.MuiSvgIcon-root ': {
+              fill: "white !important",
+            }
+           }}
           >
             {divisions.map((division) => (
               <MenuItem key={division} value={division}>
@@ -143,12 +194,28 @@ const Details = () => {
         </FormControl>
 
         <FormControl fullWidth sx={{ marginBottom: 2 }}>
-          <InputLabel>Subdivision</InputLabel>
+          <InputLabel sx={{color: "white"}}>Subdivision</InputLabel>
           <Select
             value={selectedSubdivision}
             onChange={handleSubdivisionChange}
             label="Subdivision"
-            sx={{ width: '100%' }}
+            sx={{
+              width: '100%',
+              '& .MuiOutlinedInput-root': { borderColor: 'primary' },
+              color: "white",
+            '.MuiOutlinedInput-notchedOutline': {
+              borderColor: 'rgba(228, 219, 233, 0.25)',
+            },
+            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+              borderColor: 'rgba(228, 219, 233, 0.25)',
+            },
+            '&:hover .MuiOutlinedInput-notchedOutline': {
+              borderColor: 'rgba(228, 219, 233, 0.25)',
+            },
+            '.MuiSvgIcon-root ': {
+              fill: "white !important",
+            }
+           }}
           >
             {subdivisions.map((subdivision) => (
               <MenuItem key={subdivision} value={subdivision}>
@@ -157,9 +224,27 @@ const Details = () => {
             ))}
           </Select>
           <TextField
+            className='white'
             label="Roll Number"
             variant="outlined"
             value={rollNumber}
+            sx={{
+              width: '100%',
+              '& .MuiOutlinedInput-root': { borderColor: 'primary' },
+              color: "white",
+            '.MuiOutlinedInput-notchedOutline': {
+              borderColor: 'rgba(228, 219, 233, 0.25)',
+            },
+            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+              borderColor: 'rgba(228, 219, 233, 0.25)',
+            },
+            '&:hover .MuiOutlinedInput-notchedOutline': {
+              borderColor: 'rgba(228, 219, 233, 0.25)',
+            },
+            '.MuiSvgIcon-root ': {
+              fill: "white !important",
+            }
+           }}
             onChange={(e) => setRollNumber(e.target.value)}
             fullWidth
             margin="normal"
