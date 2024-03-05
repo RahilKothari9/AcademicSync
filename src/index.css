@@ -75,7 +75,8 @@ button:focus-visible {
 
 .logo {
 
-  width: 50vw;
+  width: clamp(50vw, 50vw, 900px);
+  max-width: 300px;
   height: 6vh;
   height: 300px;
   object-fit: cover;
