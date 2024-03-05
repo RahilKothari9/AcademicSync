@@ -2,12 +2,14 @@ import { signOut, getAuth } from "firebase/auth";
 import { signInWithGooglePopup } from "../firebase.js";
 import "../App.css";
 
+import { useNavigate } from "react-router-dom";
 const Signup = () => {
   const SignOutUser = () => {
     const auth = getAuth();
     signOut(auth);
   };
-  const logGoogleUser = async () => {
+  const navigate = useNavigate();
+const logGoogleUser = async () => {
     const response = await signInWithGooglePopup()
       .then((result) => {
         // Get user data
@@ -17,6 +19,7 @@ const Signup = () => {
         if (user.email.endsWith("@somaiya.edu")) {
           // Allow the user to proceed
           console.log("User signed in successfully");
+              navigate('/details');
         } else {
           // Deny access
           console.log(

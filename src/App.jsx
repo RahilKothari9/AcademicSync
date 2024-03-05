@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
 import Signup from './components/Signup'
 import './App.css'
+import router from "./config/router";
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import { BrowserRouter, Route, RouterProvider, Routes } from "react-router-dom";
 
 function App() {
   const [count, setCount] = useState(0)
@@ -27,7 +29,8 @@ function App() {
   });
   return (
     <>
-      <Signup/>
+      {/* <Signup/> */}
+      <RouterProvider router={router} />
     </>
   )
 }
