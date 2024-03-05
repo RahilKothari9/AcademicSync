@@ -74,11 +74,14 @@ button:focus-visible {
 }
 
 .logo {
-  border-radius: 50%;
-  width: 500px;
-  height: 300px;
+
+  width: clamp(50vw, 50vw, 285px);
+  height: 6vh;
+  height: 380px;
   object-fit: cover;
+  padding: 0;
 }
+
 .white {
   color: white !important;
 }
