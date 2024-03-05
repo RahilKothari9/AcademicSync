@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #EEEEEE;
+  background-color: #eeeeee;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -74,10 +74,8 @@ button:focus-visible {
 }
 
 .logo {
-
-  width: clamp(50vw, 50vw, 285px);
-  height: 6vh;
-  height: 380px;
+  width: clamp(45rem, 50vw, 1.2em);
+  height: 400px;
   object-fit: cover;
   padding: 0;
 }
