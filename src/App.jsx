@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react'
-import Signup from './components/Signup'
-import './App.css'
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { useEffect, useState } from 'react';
+import { RouterProvider } from "react-router-dom";
+import './App.css';
 import router from "./config/router";
-import { getAuth, onAuthStateChanged } from 'firebase/auth'
-import { BrowserRouter, Route, RouterProvider, Routes } from "react-router-dom";
 
 function App() {
   const [count, setCount] = useState(0)
