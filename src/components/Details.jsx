@@ -88,6 +88,7 @@ const Details = () => {
  };
 
   return (
+    <div className='body'>
     <ThemeProvider theme={theme}>
       <Box padding={2} width={'70vw'} className="details-container">
         <Typography variant="h3" color="primary" gutterBottom>
@@ -263,6 +264,7 @@ const Details = () => {
       )}
       </Box>
     </ThemeProvider>
+    </div>
   );
 };
 
