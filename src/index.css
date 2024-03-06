@@ -2,10 +2,10 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
+  padding: 0;
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #EEEEEE;
+  background-color: #eeeeee;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -30,8 +30,11 @@ body {
    /* background-image: url("/bg.jpg");  */
   background-repeat: no-repeat;
   background-size: cover;
-  min-width: 320px;
+  min-width: 100vw;
   min-height: 100vh;
+  position: fixed;
+  overflow: hidden;
+  padding: 0;
 }
 
 h1 {
@@ -43,7 +46,7 @@ button {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.8em 2em;
-  font-size: 1.2em;
+  font-size: clamp(10px, 4vw, 1.3em);
   font-weight: 500;
   font-family: inherit;
   background-color: #1a1a1a;
@@ -75,9 +78,9 @@ button:focus-visible {
 
 .logo {
 
-  width: clamp(50vw, 50vw, 285px);
-  height: 6vh;
-  height: 380px;
+  width: clamp(40vw, 57vw, 285px);
+  height: clamp(40vh, 43vh, 390px);
+  /* height: 380px; */
   object-fit: cover;
   padding: 0;
 }

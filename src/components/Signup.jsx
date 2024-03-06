@@ -57,9 +57,9 @@ const logGoogleUser = async () => {
         <button style={{ margin: "5px" }} onClick={logGoogleUser}>
           Sign In With Google
         </button>
-        <button style={{ margin: "5px" }} onClick={SignOutUser}>
+        {/* <button style={{ margin: "5px" }} onClick={SignOutUser}>
           Sign Out
-        </button>
+        </button> */}
       </div>
     </div>
   );
