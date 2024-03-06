@@ -1,6 +1,7 @@
-import { signOut, getAuth } from "firebase/auth";
-import { signInWithGooglePopup } from "../firebase.js";
+import { getAuth, signOut } from "firebase/auth";
 import "../App.css";
+import "../components/css/singup.css";
+import { signInWithGooglePopup } from "../firebase.js";
 
 import { useNavigate } from "react-router-dom";
 const Signup = () => {

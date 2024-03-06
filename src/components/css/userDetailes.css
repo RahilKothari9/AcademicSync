@@ -1,0 +1,157 @@
+.whole-body{
+    min-width: 25vw;
+    display: grid !important;
+    grid-template-columns: 1fr 2fr;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    background-image: none !important;
+}
+
+.userIcon{
+
+    width: 100%;
+    height: 100vh;
+    background-image:  url("/bg.jpg"); 
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    position: relative;
+    
+}
+
+.avatar{
+    width: 9em !important;
+    height:9em !important;
+    position: absolute;
+    top: 12%;
+    left: 20%;
+}
+.profileContentWrapper{
+    width: 70%;
+    background-color: whitesmoke;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 5%;
+}
+.profileContent{
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.course{
+    padding: px;
+}
+
+.radiogroup{
+    padding-left: 6%;
+}
+
+.roll_no{
+    margin-bottom: 5%;
+}
+.userIcon{
+    color: white;
+    
+}
+.list{
+    list-style-type: none;
+
+    position: absolute;
+    top: 42%;
+    left: 15%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 5%;
+    text-decoration: underline;
+    font-size: xx-large;
+}
+li{
+    padding: 8%;
+    cursor: pointer;
+}
+.list li:before {
+    content: "•";
+    font-size: 140%; /* or whatever */
+   
+ }
+.logout{
+    position: absolute;
+    top: 33%;
+    left: 25%;
+    text-decoration: underline;
+    font-size: xx-large;
+    cursor: pointer;
+}
+.hideFUllscreen{
+    display: none;
+}
+/* <Box>
+      {users.map(user => (
+        <Box key={user.id} sx={{ marginBottom: 2 }}>
+          <Typography variant="h6" color="error">User Details</Typography>
+          <Typography variant="body1" color="error">Division: {user.division}</Typography>
+          <Typography variant="body1" color="error">Subdivision: {user.subdivision}</Typography>
+          <Typography variant="body1" color="error">Branch: {user.branch}</Typography>
+          <Typography variant="body1" color="error">Semester: {user.semester}</Typography>
+          <Typography variant="body1" color="error">User ID: {user.userId}</Typography>
+          <Typography variant="body1" color="error">Roll Number: {user.rollNumber}</Typography>
+        </Box>
+      ))
+    </Box>  */
+
+
+
+
+    @media only screen and (max-wIdth: 426px){
+        .whole-body{
+            min-width: 25vw;
+            display: flex !important;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            align-content: center;
+            justify-items: center;
+            background-image: none !important;
+        }
+        .hide{
+            display: none;
+        }
+
+        .userIcon{
+            height: 50vh;
+        }
+        .profileContent{
+            border-top: 50px;
+            border:  1px solid black;
+        }
+        .navigation, .list-mobile{
+            display: flex;
+            flex-direction: row;
+            width: 80%;
+            text-decoration: none;
+        }
+        .logout{
+            font-size: medium;
+            top:65%;
+            left: 50%;
+            transform: translate(-50%,0);
+        }
+        .avatar{
+            left: 50%;
+            transform: translate(-50%,0);
+        }
+        ul{
+            font-size: medium;
+            list-style-type: none;
+            padding: 0%;
+        }
+    }

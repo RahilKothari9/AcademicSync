@@ -1,22 +1,21 @@
-import React from 'react';
-import { useState } from 'react';
 import {
+  Alert,
+  Box,
+  Button,
   FormControl,
   InputLabel,
   MenuItem,
   Select,
-  Box,
-  Button,
+  TextField,
+  ThemeProvider,
   Typography,
   createTheme,
-  ThemeProvider,
-  Alert,
-  TextField,
 } from '@mui/material';
-import { db } from '../firebase'; // Import db from firebase.js
-import { collection, addDoc, query, where, getDocs } from 'firebase/firestore';
-import { auth } from '../firebase';
+import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import "../components/css/singup.css";
+import { auth, db } from '../firebase'; // Import db from firebase.js
 
 // Custom theme with red and black colors
 const theme = createTheme({
@@ -90,7 +89,7 @@ const Details = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box padding={2} width={'70vw'}>
+      <Box padding={2} width={'70vw'} className="details-container">
         <Typography variant="h3" color="primary" gutterBottom>
           Add Details
         </Typography>
@@ -243,8 +242,10 @@ const Details = () => {
             },
             '.MuiSvgIcon-root ': {
               fill: "white !important",
-            }
+            },
+            color: "white"
            }}
+           
             onChange={(e) => setRollNumber(e.target.value)}
             fullWidth
             margin="normal"
