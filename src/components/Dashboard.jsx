@@ -9,6 +9,7 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import CreateAnnouncement from './CreateAnnouncement';
+import Announcement from './Announcement';
 
 function Dashboard({location}) {
 
@@ -20,19 +21,7 @@ function Dashboard({location}) {
     //     if(!user)navigate("/signup")
     //     console.log(user)
     // },[])
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
-          console.log(user)
-          const uid = user.uid;
-          console.log(uid)
-          // ...
-        } else {
-          // User is signed out
-          // ...
-          console.log("Not")
-        }
-      });
-
+   
 	return (
 		<ColorModeContext.Provider value={colorMode}>
 			<ThemeProvider theme={theme}>
@@ -42,6 +31,7 @@ function Dashboard({location}) {
 					<main className="content">
 						<Topbar />
             {location === "ca" && <CreateAnnouncement/>}
+            {location === "announcement" && <Announcement/>}
 					</main>
 				</div>
 			</ThemeProvider>
