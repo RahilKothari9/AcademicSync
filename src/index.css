@@ -28,7 +28,7 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
-   /* -image:background url("/bg.jpg");  */
+  flex-direction: column;
   background-repeat: no-repeat;
   background-size: cover;
   min-width: 100vw;
