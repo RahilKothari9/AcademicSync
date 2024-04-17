@@ -18,6 +18,8 @@ import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { useAuth } from "../contexts/AuthProvider";
+import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
+import { auth, db } from '../firebase'; // Import db from firebase.js
 
 
 
@@ -50,7 +52,20 @@ const Sidebar = () => {
     const [selected, setSelected] = useState("Dashboard");
     const {currentUser} = useAuth()
     const user = currentUser
-    
+    const [userInfo, setUserInfo] = useState({role: ' ', division:' ', subdivision:' '})
+    useEffect( () => {
+        // console.log("Hi")
+        const x = async()=>{
+        const q = query(collection(db, "details"), where("userId", "==", currentUser.uid));
+        const querySnapshot = await getDocs(q);
+        // console.log("TEst")
+        const userList = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id })); 
+        setUserInfo(userList[0])
+        console.log(userInfo)
+      }
+      x();
+    //   console.log(userInfo)
+     }, [])
 
         return (
         <Box
@@ -120,7 +135,7 @@ const Sidebar = () => {
                                 {user.displayName}
                                 </Typography>
                                 <Typography variant="h5" color={colors.greenAccent[500]}>
-                                Software Engineer
+                                    {userInfo.role} of {userInfo.division}-{userInfo.subdivision}
                                 </Typography>
                             </Box>
                         </Box>

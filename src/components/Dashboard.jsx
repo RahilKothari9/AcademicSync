@@ -8,8 +8,9 @@ import Sidebar from './Sidebar';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import CreateAnnouncement from './CreateAnnouncement';
 
-function Dashboard() {
+function Dashboard({location}) {
 
   const [theme, colorMode] = useMode();
   const auth = getAuth();
@@ -40,6 +41,7 @@ function Dashboard() {
 					<Sidebar />
 					<main className="content">
 						<Topbar />
+            {location === "ca" && <CreateAnnouncement/>}
 					</main>
 				</div>
 			</ThemeProvider>
