@@ -12,10 +12,12 @@ import {
   createTheme,
 } from '@mui/material';
 import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "../components/css/singup.css";
 import { auth, db } from '../firebase'; // Import db from firebase.js
+import { useAuth } from '../contexts/AuthProvider';
+import "./css/details.css"
 
 // Custom theme with red and black colors
 const theme = createTheme({
@@ -53,10 +55,10 @@ const Details = () => {
   const handleSemesterChange = (event) => setSelectedSemester(event.target.value);
 
   const [alertOpen, setAlertOpen] = useState(false); // State to control alert visibility
-
+  const {currentUser} = useAuth();
  const handleSubmit = async () => {
     setLoading(true); // Set loading to true when processing starts
-    const userId = auth.currentUser.uid; // Assuming auth is imported from firebase.js
+    const userId = currentUser.uid; // Assuming auth is imported from firebase.js
     const details = {
       division: selectedDivision,
       subdivision: selectedSubdivision,
@@ -64,6 +66,7 @@ const Details = () => {
       semester: selectedSemester,
       userId: userId,
       rollNumber: rollNumber,
+      role: 'Student' 
     };
 
     // Check if a document with the same userId already exists
@@ -74,7 +77,7 @@ const Details = () => {
       // If no documents match the query, add the new document
       await addDoc(collection(db, "details"), details);
       console.log("Document added successfully.");
-      navigate('/profile');
+      navigate('/');
     } else {
       console.log("A document with this userId already exists.");
       setAlertOpen(true); // Show the alert
@@ -87,9 +90,21 @@ const Details = () => {
     setAlertOpen(false); // Hide the alert
  };
 
-  return (
+ useEffect( () => {
+    const x = async()=>{
+    const q = query(collection(db, "details"), where("userId", "==", currentUser.uid));
+    const querySnapshot = await getDocs(q);
+    console.log(querySnapshot)
+    if (!(querySnapshot.empty)) {
+      navigate('/');
+    } 
+    
+  }
+  x();
+ }, [])
+  return ( 
     <ThemeProvider theme={theme}>
-      <Box padding={2} width={'70vw'} className="details-container">
+      <Box mt={"35vh"} padding={2} width={'70vw'} className="details-container">
         <Typography variant="h3" color="primary" gutterBottom>
           Add Details
         </Typography>

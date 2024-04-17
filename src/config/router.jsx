@@ -3,6 +3,7 @@ import Signup from "../components/Signup";
 import Details from "../components/Details";
 import UserDetails from "../components/UserDetails";
 import Dashboard from "../components/Dashboard";
+import Private from "../components/Private";
 
 const router = createBrowserRouter([
     {
@@ -22,7 +23,7 @@ const router = createBrowserRouter([
     },
     {
         path: "/",
-        element: <Dashboard/>,
+        element: <Private/>,
         exact: true,
     },
     {
