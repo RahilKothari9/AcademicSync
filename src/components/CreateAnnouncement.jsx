@@ -1,15 +1,10 @@
-import React, {useState, useRef} from 'react';
-import { TextField, Button, Container, Stack, Alert } from '@mui/material';
-import { Link, useNavigate } from "react-router-dom"
-import { useAuth } from '../contexts/AuthProvider';
-import { AuthProvider } from '../contexts/AuthProvider';
-import { getFirestore, collection, setDoc, addDoc} from "firebase/firestore";
-import {createUserWithEmailAndPassword} from "firebase/auth";
-import { auth, db } from "../firebase"
-import { useEffect } from 'react';
-import { getDocs, query, where } from 'firebase/firestore';
+import { Alert, Button, TextField } from '@mui/material';
+import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
+import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate } from "react-router-dom";
+import { AuthProvider, useAuth } from '../contexts/AuthProvider';
+import { db } from "../firebase";
 
- 
 const CreateAnnouncement= () => {
 
     const TitleRef = useRef()
@@ -20,6 +15,9 @@ const CreateAnnouncement= () => {
     const dbRef = collection(db, "Announcements")
     const history = useNavigate()
     const [userInfo, setUserInfo] = useState({userId: "", role: ' ', division:' ', subdivision:' '})
+    const [showAlert, setShowAlert] = useState(false); // State for showing the alert
+    const [title, setTitle] = useState(''); // State for title input
+    const [text, setText] = useState(''); // State for text input
 
     useEffect( () => {
         
@@ -48,6 +46,10 @@ const CreateAnnouncement= () => {
          addDoc(dbRef, data)
          .then(docRef => {
              console.log("Document has been added successfully");
+             setShowAlert(true); // Show the alert
+             setTitle(''); // Reset the title
+             setText(''); // Reset the text
+             setTimeout(() => setShowAlert(false), 5000); // Hide the alert after 5 seconds
          })
          .catch(error => {
              console.log(error);
@@ -62,36 +64,45 @@ const CreateAnnouncement= () => {
             <div className='formWrapper'>
             <h2>Create Announcement</h2>
             
-            <form onSubmit={handleSubmit}>
+            {showAlert && 
+                <Alert severity="success" sx={{ mb: 2 }}>
+                    Announcement created successfully!
+                </Alert>
+            }
+
+            <form onSubmit={handleSubmit} sx={{display: "flex", flexDirection: "column"}}>
                 
-                <TextField
-                    type="Title"
-                    variant='outlined'
-                    color='secondary'
-                    label="Title"
-                    
-                    inputRef={TitleRef}
-                    sx={{mb: 2}}
-                    fullWidth
-                    required
-                    
-            
-                />
-                <TextField
-                    type="Text"
-                    variant='outlined'
-                    color='secondary'
-                    label="Descriprtion/Recipe"
-                    
-                    inputRef={TextRef}
-                    fullWidth
-                    
-                    sx={{mb: 2}}
-          
-                />
+            <TextField
+                type="Title"
+                variant='outlined'
+                color='secondary'
+                label="Title"
+                inputRef={TitleRef}
+                value={title}
+                onChange={e => setTitle(e.target.value)}
+                sx={{mb: 2, width: '80%'}}
+                required
+            />
+            <TextField
+                type="Text"
+                variant='outlined'
+                color='secondary'
+                label="Announcement"
+                inputRef={TextRef}
+                value={text}
+                onChange={e => setText(e.target.value)}
+                sx={{mb: 2, width: '80%'}}
+            />
                 
+                <div>
+                <Button disabled= {loading} variant="outlined" color="secondary" type="submit" className='submitButton font'  sx={{ 
+                    mt: 2, // Add some margin-top for spacing
+                    padding: '10px 20px', // Increase padding for a larger button
+                    fontSize: '1.1em', // Increase font size
+                    textTransform: 'none', // Remove uppercase transformation
+                }}>Add Item</Button>
+                </div>
                 
-                <Button disabled= {loading} variant="outlined" color="secondary" type="submit" className='submitButton font'>Add Item</Button>
             </form>
             </div>
      
