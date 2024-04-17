@@ -1,14 +1,11 @@
-import React, {useState, useEffect} from 'react'
-import { Button, Alert, Grid } from '@mui/material';
-import { useAuth } from '../contexts/AuthProvider';
-import { useNavigate, useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-import { collection, query, where, getDocs, deleteDoc, doc } from "firebase/firestore";
-import { db } from '../firebase'
+import { Alert, Grid } from '@mui/material';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
+import { collection, getDocs, query, where } from "firebase/firestore";
+import React, { useEffect, useState } from 'react';
+import { useAuth } from '../contexts/AuthProvider';
+import { db } from '../firebase';
 
 export default function Announcement() {
   const [error, setError] = useState("")
@@ -61,32 +58,39 @@ export default function Announcement() {
   
 
   return (
-    
-    <div>
+    <div sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
       {error && <Alert onClose={() => {setError("")}} severity="error" sx={{mb: 2}}>{error}</Alert>}
-
-    
-    <div className='centerer'>
-    <div className='foodwrapper'>
+      <div className='centerer' sx={{ width: '80%', margin: '0 auto', overFlow: "scroll"}}>
+        <div className='foodwrapper'>
           {linkArr.map((item) => (
-            <Grid item key={item.id} xs={12} sm={6} md={4} lg={10}>
-              
-              <Card sx={{ minWidth: 250 }} className='foodcard'>
-                <CardContent>
-                
-                  <h2>{item.name}</h2>
-                    
-                  <h3>{item.description}</h3>
-                  
+            <Grid item key={item.id} xs={12} sm={6} md={4} lg={10}   sx={{ 
+        display: 'flex', 
+        justifyContent: 'center' 
+    }}>
+            <Card 
+    sx={{ 
+        minWidth: 550, 
+        maxWidth: '90%', // Decrease the width here
+        mb: 2, 
+        backgroundColor: 'rgba(128, 0, 128, 0.1)', // Change the background color here
+        border: '1px solid #888',
+        boxShadow: '5px 5px 15px rgba(0, 0, 0, 0.3)' 
+    }} 
+    className='foodcard'
+>
+                <CardContent sx={{ textAlign: 'center' }}>
+                  <Typography variant="h5" component="div" sx={{ mb: 1, fontSize: "2em" }}>
+                    {item.name}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary" sx={{fontSize: '1.5em'}}>
+                    {item.description}
+                  </Typography>
                 </CardContent>
-
               </Card>
             </Grid>
-            
           ))}
         </div>
-    </div>
-    
+      </div>
     </div>
   )
 }

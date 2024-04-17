@@ -12,12 +12,12 @@ import {
   createTheme,
 } from '@mui/material';
 import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "../components/css/singup.css";
-import { auth, db } from '../firebase'; // Import db from firebase.js
 import { useAuth } from '../contexts/AuthProvider';
-import "./css/details.css"
+import { db } from '../firebase'; // Import db from firebase.js
+import "./css/details.css";
 
 // Custom theme with red and black colors
 const theme = createTheme({
@@ -90,19 +90,8 @@ const Details = () => {
     setAlertOpen(false); // Hide the alert
  };
 
- useEffect( () => {
-    const x = async()=>{
-    const q = query(collection(db, "details"), where("userId", "==", currentUser.uid));
-    const querySnapshot = await getDocs(q);
-    console.log(querySnapshot)
-    if (!(querySnapshot.empty)) {
-      navigate('/');
-    } 
-    
-  }
-  x();
- }, [])
-  return ( 
+  return (
+    <div className='body'>
     <ThemeProvider theme={theme}>
       <Box mt={"35vh"} padding={2} width={'70vw'} className="details-container">
         <Typography variant="h3" color="primary" gutterBottom>
@@ -278,6 +267,7 @@ const Details = () => {
       )}
       </Box>
     </ThemeProvider>
+    </div>
   );
 };
 
