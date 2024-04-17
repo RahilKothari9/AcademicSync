@@ -3,33 +3,36 @@ import { useEffect, useState } from 'react';
 import { RouterProvider } from "react-router-dom";
 import './App.css';
 import router from "./config/router";
+import { AuthProvider } from './contexts/AuthProvider';
 
 function App() {
   const [count, setCount] = useState(0)
   const auth = getAuth()
   const user = auth.currentUser;
 
-  useEffect(()=>{
-    //console.log(auth)
+  // useEffect(()=>{
+  //   console.log(user)
     
-  })
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/firebase.User
-      const uid = user.uid;
-      console.log(uid)
-      // ...
-    } else {
-      // User is signed out
-      // ...
-      console.log("Not")
-    }
-  });
+  // })
+  // onAuthStateChanged(auth, (user) => {
+  //   if (user) {
+  //     console.log(user)
+  //     const uid = user.uid;
+  //     console.log(uid)
+  //     // ...
+  //   } else {
+  //     // User is signed out
+  //     // ...
+  //     console.log("Not")
+  //   }
+  // });
   return (
     <>
       {/* <Signup/> */}
-      <RouterProvider router={router} />
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+      
     </>
   )
 }
