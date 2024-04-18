@@ -29,8 +29,7 @@ body {
   display: flex;
   place-items: center;
   flex-direction: column;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-color: #213547;
   min-width: 100vw;
   min-height: 100vh;
   position: fixed;

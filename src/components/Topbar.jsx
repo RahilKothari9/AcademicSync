@@ -14,6 +14,14 @@ const Topbar = () => {
     const colors = tokens(theme.palette.mode);
     const colorMode = useContext(ColorModeContext);
 
+    const changeBackgroundColor = () => {
+        if (theme.palette.mode === "dark") {
+            document.body.style.backgroundColor = "#f5f5f5"; // Light mode background color
+        } else {
+            document.body.style.backgroundColor = "rgb(20, 27, 45)"; // Dark mode background color
+        }
+    };
+
     return (
         <Box display="flex" justifyContent="space-between" p={2}>
         {/* SEARCH BAR */}
