@@ -10,6 +10,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import CreateAnnouncement from './CreateAnnouncement';
 import Announcement from './Announcement';
+import CreateEvent from './CreateEvent';
+import Events from './Events';
 
 function Dashboard({location}) {
 
@@ -32,6 +34,8 @@ function Dashboard({location}) {
 						<Topbar />
             {location === "ca" && <CreateAnnouncement/>}
             {location === "announcement" && <Announcement/>}
+			{location === 'ce' && <CreateEvent/>}
+			{location === 'events' && <Events/>}
 					</main>
 				</div>
 			</ThemeProvider>

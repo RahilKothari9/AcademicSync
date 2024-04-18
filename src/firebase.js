@@ -2,6 +2,9 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth, signInWithPopup, GoogleAuthProvider, setPersistence, signInWithRedirect, inMemoryPersistence } from "firebase/auth";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
+
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyCcEP37JXCWvIu_9yH3FNvgDR27UdTGmrw",
@@ -28,3 +31,4 @@ provider.setCustomParameters({
 export const auth = getAuth();
 export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
 export const db = getFirestore(app);
+export const storage = getStorage(app);

@@ -4,6 +4,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { AuthProvider, useAuth } from '../contexts/AuthProvider';
 import { db } from "../firebase";
+import { Timestamp } from "firebase/firestore";
+
 
 const CreateAnnouncement= () => {
 
@@ -41,7 +43,9 @@ const CreateAnnouncement= () => {
             division: userInfo.division,
             subdivision: userInfo.subdivision,
             description: TextRef.current.value,
-            user_id: currentUser.uid
+            user_id: currentUser.uid,
+            timestamp: Timestamp.now(),
+            
          };
          addDoc(dbRef, data)
          .then(docRef => {

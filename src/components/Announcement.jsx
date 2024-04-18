@@ -2,7 +2,7 @@ import { Alert, Grid } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { collection, getDocs, query, where, orderBy } from "firebase/firestore";
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../contexts/AuthProvider';
 import { db } from '../firebase';
@@ -34,7 +34,8 @@ export default function Announcement() {
             arr.push({...doc.data(), id:doc.id});
           });        
 
-        setLinkArr(arr);
+        const sortedArr = arr.sort((a, b) => b.timestamp.toMillis() - a.timestamp.toMillis());
+        setLinkArr(sortedArr);
         // console.log(linkArr)
     };
     const x = async()=>{

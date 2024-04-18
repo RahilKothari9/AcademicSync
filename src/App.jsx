@@ -1,4 +1,5 @@
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { collection, addDoc } from "firebase/firestore";
 import { useEffect, useState } from 'react';import './App.css';
 import { AuthProvider } from './contexts/AuthProvider';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
@@ -53,6 +54,12 @@ function App() {
             </Route>
             <Route exact path='/announcements' element={<Private/>}>
                     <Route exact path='/announcements' element={<Dashboard location={"announcement"} />}/>
+            </Route>
+            <Route exact path='/ce' element={<Private/>}>
+                    <Route exact path='/ce' element={<Dashboard location={"ce"} />}/>
+            </Route>
+            <Route exact path='/events' element={<Private/>}>
+                    <Route exact path='/events' element={<Dashboard location={"events"} />}/>
             </Route>
             <Route exact path='/signup' element={<Signup/>}>
                     
