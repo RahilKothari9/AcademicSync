@@ -90,11 +90,13 @@ const Details = () => {
     setAlertOpen(false); // Hide the alert
  };
 
-  return (
-    <div className='body'>
+ return (
+  <div className='body'>
+  
     <ThemeProvider theme={theme}>
-      <Box mt={"35vh"} padding={2} width={'70vw'} className="details-container">
-        <Typography variant="h3" color="primary" gutterBottom>
+    
+      <Box mt={"10vh"} padding={2} width={'50vw'} className=" form-container" sx={{margin: 'auto', position:"absolute"}}>
+        <Typography variant="h3" color="white" gutterBottom align="center">
           Add Details
         </Typography>
 
@@ -247,7 +249,9 @@ const Details = () => {
             '.MuiSvgIcon-root ': {
               fill: "white !important",
             },
-            color: "white"
+           '.MuiInputLabel-root': {
+              color: 'white',
+           }
            }}
            
             onChange={(e) => setRollNumber(e.target.value)}
@@ -256,18 +260,20 @@ const Details = () => {
         />
         </FormControl>
 
-        <Button variant="contained" color="primary" onClick={handleSubmit}>
+       <Button variant="contained" backgroundColour="white" color="primary" onClick={handleSubmit} sx={{display: 'block', margin: 'auto'}}>
             Submit
-        </Button>
+          </Button>
 
-        {alertOpen && (
-        <Alert severity="error" onClose={handleAlertClose}>
-          A document with this userId already exists.
-        </Alert>
-      )}
-      </Box>
-    </ThemeProvider>
+          {alertOpen && (
+            <Alert severity="error" onClose={handleAlertClose} sx={{marginTop: 2}}>
+              A document with this userId already exists.
+            </Alert>
+          )}
+        </Box>
+        
+      </ThemeProvider>
     </div>
+    
   );
 };
 
