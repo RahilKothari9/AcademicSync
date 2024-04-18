@@ -1,4 +1,5 @@
-import { Alert, Grid } from '@mui/material';
+import { Alert, Grid, useTheme} from '@mui/material';
+import { tokens } from "../theme";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
@@ -8,6 +9,9 @@ import { useAuth } from '../contexts/AuthProvider';
 import { db } from '../firebase';
 
 export default function Events() {
+
+    const theme = useTheme();
+    const colors = tokens(theme.palette.mode);
   const [error, setError] = useState("");
 
   const { currentUser, logout } = useAuth();
@@ -58,24 +62,25 @@ export default function Events() {
                   minWidth: 550, 
                   maxWidth: '90%', // Decrease the width here
                   mb: 2, 
-                  backgroundColor: 'rgba(128, 0, 128, 0.1)', // Change the background color here
+                  backgroundColor: colors.primary[400],
                   border: '1px solid #888',
                   boxShadow: '5px 5px 15px rgba(0, 0, 0, 0.3)' 
                 }} 
+                backgroundColor={colors.primary[400]}
                 className='foodcard'
               >
                 <CardContent sx={{ textAlign: 'center' }}>
-                  <Typography variant="h5" component="div" sx={{ mb: 1, fontSize: "2em" }}>
+                  <Typography variant="h5" component="div" sx={{ mb: 1, fontSize: "2em", color: colors.greenAccent[600]}}>
                     {item.name}
                   </Typography>
-                  <Typography variant="body2" color="text.secondary" sx={{fontSize: '1.5em'}}>
+                  <Typography variant="body2"  sx={{fontSize: '1.5em'}}>
                     Description: {item.description}
                   </Typography>
-                  <Typography variant="body2" color="text.secondary" sx={{fontSize: '1.5em'}}>
+                  <Typography variant="body2"  sx={{fontSize: '1.5em'}}>
                     Date: {new Date(item.date.seconds * 1000).toLocaleString()}
                   </Typography>
                   
-                  <Typography variant="body2" color="text.secondary" sx={{fontSize: '1.5em'}}>
+                  <Typography variant="body2"  sx={{fontSize: '1.5em'}}>
                     
                       {item.files.map((fileUrl, index) => (
                         

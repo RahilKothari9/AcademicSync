@@ -1,4 +1,4 @@
-import { Alert, Grid } from '@mui/material';
+import { Alert, Grid, useTheme } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
@@ -6,6 +6,8 @@ import { collection, getDocs, query, where, orderBy } from "firebase/firestore";
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../contexts/AuthProvider';
 import { db } from '../firebase';
+import { tokens } from "../theme";
+
 
 export default function Announcement() {
   const [error, setError] = useState("")
@@ -13,7 +15,8 @@ export default function Announcement() {
   const { currentUser, logout } = useAuth()
 
   
-
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
 
 
   const [linkArr, setLinkArr] = useState([]);
@@ -73,17 +76,17 @@ export default function Announcement() {
         minWidth: 550, 
         maxWidth: '90%', // Decrease the width here
         mb: 2, 
-        backgroundColor: 'rgba(128, 0, 128, 0.1)', // Change the background color here
+        backgroundColor: colors.primary[400],
         border: '1px solid #888',
         boxShadow: '5px 5px 15px rgba(0, 0, 0, 0.3)' 
     }} 
     className='foodcard'
 >
                 <CardContent sx={{ textAlign: 'center' }}>
-                  <Typography variant="h5" component="div" sx={{ mb: 1, fontSize: "2em" }}>
+                  <Typography variant="h5" component="div" sx={{ mb: 1, fontSize: "2em", color: colors.greenAccent[600] }}>
                     {item.name}
                   </Typography>
-                  <Typography variant="body2" color="text.secondary" sx={{fontSize: '1.5em'}}>
+                  <Typography variant="body2"  sx={{fontSize: '1.5em'}}>
                     {item.description}
                   </Typography>
                 </CardContent>
