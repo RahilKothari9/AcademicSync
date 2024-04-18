@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { TextField, Button, Typography, Grid, Box } from '@mui/material';
-import { db, storage } from '../firebase';
-import { Timestamp } from "firebase/firestore";
-import { collection, addDoc, where, getDocs, query } from "firebase/firestore";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { Box, Button, Grid, TextField, Typography } from '@mui/material';
+import { Timestamp, addDoc, collection, getDocs, query, where } from "firebase/firestore";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import React, { useEffect, useState } from 'react';
 import { useAuth } from '../contexts/AuthProvider';
+import { db, storage } from '../firebase';
 
 
 
@@ -101,18 +100,28 @@ const CreateEvent = () => {
   };
 
   return (
-    <Box>
+    <Box 
+      sx={{
+        
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        padding: '20px',
+       
+       
+      }}>
       <Typography variant="h6" gutterBottom>
         Create Event
       </Typography>
       <form onSubmit={handleSubmit}>
-        <Grid container spacing={3}>
-          <Grid item xs={12} sm={6}>
+        <Grid container spacing={6}>
+          <Grid item xs={12}>
             <TextField
               id="name"
               label="Name"
               variant="outlined"
               value={name}
+              color='secondary'
               onChange={handleNameChange}
               required
               fullWidth
@@ -124,29 +133,30 @@ const CreateEvent = () => {
               label="Description"
               variant="outlined"
               value={description}
+              color='secondary'
               onChange={handleDescriptionChange}
               multiline
               required
               fullWidth
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12}>
             <TextField
               id="date"
               label="Date"
               type="date"
               variant="outlined"
               value={date}
-              
               onChange={handleDateChange}
               required
               fullWidth
+              color='secondary'
               InputLabelProps={{
                 shrink: true,
               }}
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12}>
             <TextField
               id="time"
               label="Time"
@@ -155,6 +165,7 @@ const CreateEvent = () => {
               value={time}
               onChange={handleTimeChange}
               required
+              color='secondary'
               fullWidth
               InputLabelProps={{
                 shrink: true,
@@ -162,21 +173,46 @@ const CreateEvent = () => {
             />
           </Grid>
           <Grid item xs={12}>
-            <input
-              type="file"
-              onChange={handleFileChange}
-              multiple
-            />
-          </Grid>
+  <div
+    style={{
+      height: '100px',
+      border: '1px dashed white',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}
+    
+    onDragOver={(event) => {
+      event.preventDefault();
+    }}
+    onDrop={(event) => {
+      event.preventDefault();
+      setFiles(Array.from(event.dataTransfer.files));
+    }}
+  >
+    <input
+      type="file"
+      style={{ display: 'none' }}
+      onChange={(event) => {
+        setFiles(Array.from(event.target.files));
+      }}
+      multiple
+      id="file-input"
+    />
+    <label htmlFor="file-input">Drag and drop files here or click to select</label>
+  </div>
+</Grid>
         </Grid>
         <Button
+        sx={{marginTop: '3em', width: '50%', height: '3.5em'}}
           variant="contained"
-          color="primary"
+          color="secondary"
           type="submit"
         >
           Create Event
         </Button>
       </form>
+     
     </Box>
   );
 };
