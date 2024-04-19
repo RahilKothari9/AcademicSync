@@ -1,24 +1,43 @@
-import { Alert, Grid, useTheme} from '@mui/material';
-import { tokens } from "../theme";
+import DeleteIcon from '@mui/icons-material/Delete';
+import { Alert, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, useTheme } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { collection, getDocs, query, where, orderBy } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDocs, query, where } from "firebase/firestore";
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../contexts/AuthProvider';
 import { db } from '../firebase';
+import { tokens } from "../theme";
 
 export default function Events() {
 
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
   const [error, setError] = useState("");
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [eventToDelete, setEventToDelete] = useState(null);
 
   const { currentUser, logout } = useAuth();
 
   const [eventArr, setEventArr] = useState([]);
 
   const [userInfo, setUserInfo] = useState({userId: "", role: ' ', division:' ', subdivision:' '});
+
+  //delete function
+  const handleDeleteClick = (event) => {
+    setEventToDelete(event);
+    setDeleteDialogOpen(true);
+  };
+
+  const handleConfirmDelete = async () => {
+    if (eventToDelete) {
+      const eventRef = doc(db, 'events', eventToDelete.id);
+      await deleteDoc(eventRef);
+      setEventArr(eventArr.filter(event => event.id !== eventToDelete.id));
+    }
+    setDeleteDialogOpen(false);
+  };
+
 
   useEffect(() => {
     const getEvents = async (info) => {
@@ -89,12 +108,41 @@ export default function Events() {
                       ))}
                     
                  </Typography>
+                 <Button onClick={() => handleDeleteClick(item)} sx={{ height: '50px', backgroundColor: 'red', color: 'white' }}>
+                  <DeleteIcon />
+                 </Button>
                 </CardContent>
               </Card>
             </Grid>
           ))}
         </div>
       </div>
+      <Dialog
+        open={deleteDialogOpen}
+        onClose={() => setDeleteDialogOpen(false)}
+        PaperProps={{
+    style: {
+      
+      borderRadius: '15px',
+      padding: '20px',
+    },
+  }}
+      >
+        <DialogTitle>{"Confirm Delete"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Are you sure you want to delete this event?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setDeleteDialogOpen(false)} sx={{ backgroundColor: '#757575', color: '#fff' }}>
+            Cancel
+          </Button>
+          <Button onClick={handleConfirmDelete} color="primary" sx={{ backgroundColor: '#f44336', color: '#fff' }} autoFocus>
+            Delete
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }
