@@ -44,7 +44,7 @@ function App() {
         <Router>
           <Routes>
             <Route exact path='/' element={<Private/>}>
-                    <Route exact path='/' element={<Dashboard />}/>
+                    <Route exact path='/' element={<Dashboard location={"announcement"}/>}/>
             </Route>
             <Route exact path='/details' element={<Private/>}>
                     <Route exact path='/details' element={<Details />}/>
@@ -61,7 +61,10 @@ function App() {
             <Route exact path='/events' element={<Private/>}>
                     <Route exact path='/events' element={<Dashboard location={"events"} />}/>
             </Route>
-            <Route exact path='/signup' element={<Signup/>}>
+            <Route exact path='/admin' element={<Private/>}>
+                    <Route exact path='/admin' element={<Dashboard location={"admin"} />}/>
+            </Route>
+            <Route exact path='/signup' element={<Signup/>}>  
                     
             </Route>
           </Routes>

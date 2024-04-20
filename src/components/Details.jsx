@@ -56,6 +56,7 @@ const Details = () => {
 
   const [alertOpen, setAlertOpen] = useState(false); // State to control alert visibility
   const {currentUser} = useAuth();
+  // console.log(currentUser)
  const handleSubmit = async () => {
     setLoading(true); // Set loading to true when processing starts
     const userId = currentUser.uid; // Assuming auth is imported from firebase.js
@@ -66,7 +67,9 @@ const Details = () => {
       semester: selectedSemester,
       userId: userId,
       rollNumber: rollNumber,
-      role: 'Student' 
+      role: 'Student',
+      name: currentUser.displayName,
+      email: currentUser.email
     };
 
     // Check if a document with the same userId already exists

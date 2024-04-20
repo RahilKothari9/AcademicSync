@@ -144,8 +144,8 @@ const Sidebar = () => {
                     {/* MENU ITEMS */}
                     <Box paddingLeft={isCollapsed ? undefined : "10%"}>
                         <Item
-                            title="Dashboard"
-                            to="/"
+                            title="Admin Dashboard"
+                            to="/admin"
                             icon={<HomeOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}

@@ -12,6 +12,7 @@ import CreateAnnouncement from './CreateAnnouncement';
 import Announcement from './Announcement';
 import CreateEvent from './CreateEvent';
 import Events from './Events';
+import AdminDashboard from './Admin';
 
 function Dashboard({location}) {
 
@@ -36,6 +37,7 @@ function Dashboard({location}) {
             {location === "announcement" && <Announcement/>}
 			{location === 'ce' && <CreateEvent/>}
 			{location === 'events' && <Events/>}
+			{location === 'admin' && <AdminDashboard/>}
 					</main>
 				</div>
 			</ThemeProvider>
