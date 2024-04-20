@@ -1,14 +1,11 @@
-import AddIcon from '@material-ui/icons/Add';
-import EditIcon from '@material-ui/icons/Edit';
-import InfoIcon from '@material-ui/icons/Info';
-import { useEffect, useState } from "react";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import Modal from "react-bootstrap/Modal";
-import { Link, useParams } from "react-router-dom";
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, InputLabel } from '@material-ui/core';
+import { Add as AddIcon } from '@material-ui/icons';
+import React, { useEffect, useState } from 'react';
+
+import { useParams } from "react-router-dom";
 import "../Profile/ProfileEditingModal.css";
 
-const ProfileEditForm = ({ profileDetails }) => {
+export const ProfileEditForm = ({ profileDetails }) => {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
@@ -169,128 +166,35 @@ const ProfileEditForm = ({ profileDetails }) => {
   }, []);
 
   return (
-    <>
-      <EditIcon
-        size={20}
-        id="pencil-icon-open-edit-form"
-        onClick={handleShow}
-      />
-      <Modal id="profile-edit-form-modal" show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modifica introduzione</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <p id="edit-profile-form-required-notice">
-            * Indica che è obbligatorio
-          </p>
-          <Form>
-            <Form.Group controlId="firstName">
-              <Form.Label>Nome*</Form.Label>
-              <Form.Control
-                type="text"
-                required
-                value={profileToEdit.name}
-                onChange={(e) => handleInput("name", e.target.value)}
-              />
-            </Form.Group>
-            <Form.Group controlId="lastName">
-              <Form.Label>Cognome*</Form.Label>
-              <Form.Control
-                type="text"
-                required
-                value={profileToEdit.surname}
-                onChange={(e) => handleInput("surname", e.target.value)}
-              />
-            </Form.Group>
-            <p className="profile-form-small-notice">Name aggiuntivo</p>
-            <InfoIcon />{" "}
-            <span>
-              Può essere aggiunta solo usando la nostra app per dispositivi
-              mobili
-            </span>
-            <Form.Group controlId="profile-edit-form-pronouns">
-              <Form.Label>Inserisci pronomi personalizzati</Form.Label>
-              <Form.Control as="select" placeholder="Please select">
-                <option>Lei</option>
-                <option>Lui</option>
-                <option>Egli</option>
-                <option>Altro</option>
-              </Form.Control>
-              <p className="profile-form-small-notice">
-                Indica i pronomi di genere che vuoi che gli altri usino per
-                riferirsi a te.
-              </p>
-              <p>
-                <Link to="/">Scopri di più sui pronomi di genere.</Link>
-              </p>
-            </Form.Group>
-            <div id="showEducation" className="mb-3">
-              <input
-                type="checkbox"
-                id="showEducationCheckbox"
-                name="showEducationCheckbox"
-                onChange={(e) => handleEducation(e.target.checked)}
-                checked={showEducation}
-              />
-              <label for="showEducationCheckbox" className="ml-2 mt-3">
-                Mostra l'istruzione nella mia introduzione
-              </label>
-            </div>
-            <Form.Group controlId="location">
-              <Form.Label>Luogo</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Es: Londra, Berlino"
-                required
-                value={profileToEdit.area}
-                onChange={(e) => handleInput("area", e.target.value)}
-              />
-              <Form.Control
-                type="text"
-                placeholder="CAP"
-                value={profileToEdit.bio}
-                onChange={(e) => handleInput("bio", e.target.value)}
-              />
-            </Form.Group>
-            <Form.Group>
-              <div className="form-label">
-                <p>Foto profilo</p>
-                <p>Aggiungi nuova immagine profilo</p>
-              </div>
-              <Form.Label
-                id="choose-file-label"
-                className="mt-3 btn btn-outline-primary"
-                for="choose-file-btn"
-              >
-                <AddIcon id="plus-icon-add-media" size={18} /> Selezione nuova immagine
-              </Form.Label>
-              <Form.Control
-                id="choose-file-btn"
-                type="file"
-                onChange={(event) => {
-                  setFormData(event.target.files[0]);
-                }}
-              />
-            </Form.Group>
-            <Button
-              className="save-profile-btn btn-sm"
-              onClick={uploadProfileImage}
-            >
-              Carica
-            </Button>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer className={"d-flex justify-content-end"}>
-          <Button
-            id="save-profile-btn"
-            className="px-3 py-1"
-            onClick={handleSubmit}
+    <Dialog open={show} onClose={handleClose}>
+      <DialogTitle>Modifica introduzione</DialogTitle>
+      <DialogContent>
+        <FormControl>
+          <div className="form-label">
+            <p>Foto profilo</p>
+            <p>Aggiungi nuova immagine profilo</p>
+          </div>
+          <InputLabel
+            id="choose-file-label"
+            className="mt-3 btn btn-outline-primary"
+            htmlFor="choose-file-btn"
           >
-            Salva
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </>
+            <AddIcon id="plus-icon-add-media" size={18} /> Selezione nuova immagine
+          </InputLabel>
+          <input
+            id="choose-file-btn"
+            type="file"
+            onChange={(event) => {
+              setFormData(event.target.files[0]);
+            }}
+          />
+        </FormControl>
+        <Button variant="contained" color="primary" onClick={uploadProfileImage}>Carica</Button>
+      </DialogContent>
+      <DialogActions>
+        <Button variant="contained" color="primary" onClick={handleSubmit}>Salva</Button>
+      </DialogActions>
+    </Dialog>
   );
 };
 

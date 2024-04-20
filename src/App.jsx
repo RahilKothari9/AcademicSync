@@ -1,16 +1,15 @@
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { collection, addDoc } from "firebase/firestore";
-import { useEffect, useState } from 'react';import './App.css';
-import { AuthProvider } from './contexts/AuthProvider';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { ThemeProvider } from "@mui/material";
+import { getAuth } from 'firebase/auth';
+import { useState } from 'react';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import './App.css';
+import Dashboard from './components/Dashboard';
 import Details from './components/Details';
 import Private from './components/Private';
-import Dashboard from './components/Dashboard';
+import Profile from './components/Profiile';
 import Signup from './components/Signup';
-import CreateAnnouncement from './components/CreateAnnouncement';
+import { AuthProvider } from './contexts/AuthProvider';
 import { ColorModeContext, useMode } from "./theme";
-import { CssBaseline, ThemeProvider } from "@mui/material";
-import ProfileEditForm from './components/UsereProfile';
 
 
 function App() {
@@ -66,7 +65,7 @@ function App() {
                     <Route exact path='/admin' element={<Dashboard location={"admin"} />}/>
             </Route>
             <Route exact path='/profile' element={<Private/>}>
-                    <Route exact path='/profile' element={<ProfileEditForm />}/>
+                    <Route exact path='/profile' element={<Profile />}/>
             </Route>
             <Route exact path='/signup' element={<Signup/>}>  
                     
