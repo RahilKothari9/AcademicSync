@@ -10,6 +10,7 @@ import Signup from './components/Signup';
 import CreateAnnouncement from './components/CreateAnnouncement';
 import { ColorModeContext, useMode } from "./theme";
 import { CssBaseline, ThemeProvider } from "@mui/material";
+import ProfileEditForm from './components/UsereProfile';
 
 
 function App() {
@@ -63,6 +64,9 @@ function App() {
             </Route>
             <Route exact path='/admin' element={<Private/>}>
                     <Route exact path='/admin' element={<Dashboard location={"admin"} />}/>
+            </Route>
+            <Route exact path='/profile' element={<Private/>}>
+                    <Route exact path='/profile' element={<ProfileEditForm />}/>
             </Route>
             <Route exact path='/signup' element={<Signup/>}>  
                     
