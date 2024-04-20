@@ -8,6 +8,31 @@ import React, { useEffect, useState } from 'react';
 import { useAuth } from '../contexts/AuthProvider';
 import { db } from '../firebase';
 import { tokens } from "../theme";
+import { IconButton } from '@mui/material';
+import EmailIcon from '@mui/icons-material/Email';
+import { getUnixTime, subHours } from 'date-fns';
+// import { sendEmail } from '../utils/email';
+
+
+const handleEmailRequest = async (event) => {
+  try {
+    // Calculate the time before the event to send the email (e.g., 1 hour before)
+    const emailTime = subHours(new Date(event.date.seconds * 1000), 1); // Change the time here as needed
+    const currentTime = new Date();
+    if (currentTime >= emailTime) {
+      throw new Error('Email time has already passed.');
+    }
+    console.log(emailTime)
+    // Send the email at the specified time
+    // setTimeout(() => {
+    //   // Use the sendEmail function to send the email
+    //   sendEmail(event.name, event.description, event.date, event.files); // Pass event details to the email function
+    // }, emailTime - currentTime);
+  } catch (error) {
+    console.error('Error requesting email:', error.message);
+    setError('Error requesting email: ' + error.message);
+  }
+};
 
 export default function Events() {
 
@@ -89,27 +114,28 @@ export default function Events() {
                 className='foodcard'
               >
                 <CardContent sx={{ textAlign: 'center' }}>
-                  <Box  sx={{  display: 'flex',flexDirection: 'row' }}>
-                    {
-                       userInfo.role !== 'Student' &&
-                      <Typography variant="h5" component="div" sx={{ flexGrow: 1, mb: 1, ml: 6, fontSize: "2em", color: colors.greenAccent[600]}}>
+                <Box sx={{ display: 'flex', flexDirection: 'row' }}>
+                  {/* Button to request email */}
+              <IconButton onClick={() => handleEmailRequest(item)} sx={{ }}>
+                    <EmailIcon />
+                  </IconButton>
+                  {/* Rest of the content */}
+                  {userInfo.role !== 'Student' && (
+                    <Typography variant="h5" component="div" sx={{ flexGrow: 1, mb: 1, ml: 6, fontSize: "2em", color: colors.greenAccent[600]}}>
                       {item.name}
                     </Typography>
-                    }
-                    {
-                      userInfo.role === 'Student' &&
-                      <Typography variant="h5" component="div" sx={{ flexGrow: 1, mb: 1, fontSize: "2em", color: colors.greenAccent[600]}}>
+                  )}
+                  {userInfo.role === 'Student' && (
+                    <Typography variant="h5" component="div" sx={{ flexGrow: 1, mb: 1, ml: -6, fontSize: "2em", color: colors.greenAccent[600]}}>
                       {item.name}
-                      </Typography>
-                    }
-                   
-                    {
-                      userInfo.role !== 'Student' &&
+                    </Typography>
+                  )}
+                  {userInfo.role !== 'Student' && (
                     <Button onClick={() => handleDeleteClick(item)} sx={{ height: '25px', backgroundColor: 'red', color: 'white' }}>
                       <DeleteIcon />
                     </Button>
-                    }
-                  </Box>
+                  )}
+                </Box>
                   <Typography variant="body2"  sx={{fontSize: '1.5em'}}>
                     Description: {item.description}
                   </Typography>
