@@ -1,5 +1,5 @@
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Alert, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, useTheme } from '@mui/material';
+import { Alert, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Box, Grid, useTheme } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
@@ -78,7 +78,7 @@ export default function Events() {
             <Grid item key={item.id} xs={12} sm={6} md={4} lg={10} sx={{ display: 'flex', justifyContent: 'center' }}>
               <Card 
                 sx={{ 
-                  minWidth: 550, 
+                  minWidth: '40%', 
                   maxWidth: '90%', // Decrease the width here
                   mb: 2, 
                   backgroundColor: colors.primary[400],
@@ -89,9 +89,14 @@ export default function Events() {
                 className='foodcard'
               >
                 <CardContent sx={{ textAlign: 'center' }}>
-                  <Typography variant="h5" component="div" sx={{ mb: 1, fontSize: "2em", color: colors.greenAccent[600]}}>
-                    {item.name}
-                  </Typography>
+                  <Box  sx={{  display: 'flex',flexDirection: 'row' }}>
+                    <Typography variant="h5" component="div" sx={{ flexGrow: 1, mb: 1, ml: 6, fontSize: "2em", color: colors.greenAccent[600]}}>
+                      {item.name}
+                    </Typography>
+                    <Button onClick={() => handleDeleteClick(item)} sx={{ height: '25px', backgroundColor: 'red', color: 'white' }}>
+                      <DeleteIcon />
+                    </Button>
+                  </Box>
                   <Typography variant="body2"  sx={{fontSize: '1.5em'}}>
                     Description: {item.description}
                   </Typography>
@@ -108,9 +113,7 @@ export default function Events() {
                       ))}
                     
                  </Typography>
-                 <Button onClick={() => handleDeleteClick(item)} sx={{ height: '50px', backgroundColor: 'red', color: 'white' }}>
-                  <DeleteIcon />
-                 </Button>
+                 
                 </CardContent>
               </Card>
             </Grid>
