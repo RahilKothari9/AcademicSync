@@ -90,12 +90,25 @@ export default function Events() {
               >
                 <CardContent sx={{ textAlign: 'center' }}>
                   <Box  sx={{  display: 'flex',flexDirection: 'row' }}>
-                    <Typography variant="h5" component="div" sx={{ flexGrow: 1, mb: 1, ml: 6, fontSize: "2em", color: colors.greenAccent[600]}}>
+                    {
+                       userInfo.role !== 'Student' &&
+                      <Typography variant="h5" component="div" sx={{ flexGrow: 1, mb: 1, ml: 6, fontSize: "2em", color: colors.greenAccent[600]}}>
                       {item.name}
                     </Typography>
+                    }
+                    {
+                      userInfo.role === 'Student' &&
+                      <Typography variant="h5" component="div" sx={{ flexGrow: 1, mb: 1, fontSize: "2em", color: colors.greenAccent[600]}}>
+                      {item.name}
+                      </Typography>
+                    }
+                   
+                    {
+                      userInfo.role !== 'Student' &&
                     <Button onClick={() => handleDeleteClick(item)} sx={{ height: '25px', backgroundColor: 'red', color: 'white' }}>
                       <DeleteIcon />
                     </Button>
+                    }
                   </Box>
                   <Typography variant="body2"  sx={{fontSize: '1.5em'}}>
                     Description: {item.description}
