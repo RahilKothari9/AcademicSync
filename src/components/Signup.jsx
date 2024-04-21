@@ -10,7 +10,7 @@ const Signup = () => {
     signOut(auth);
   };
   const navigate = useNavigate();
-const logGoogleUser = async () => {
+  const logGoogleUser = async () => {
     const response = await signInWithGooglePopup()
       .then((result) => {
         // Get user data
@@ -20,7 +20,7 @@ const logGoogleUser = async () => {
         if (user.email.endsWith("@somaiya.edu")) {
           // Allow the user to proceed
           console.log("User signed in successfully");
-              navigate('/details');
+          navigate("/details");
         } else {
           // Deny access
           console.log(
@@ -41,25 +41,11 @@ const logGoogleUser = async () => {
     <div>
       <div>
         <a href="#">
-          <img
-            className="logo"
-            src="../AcademicSync2.png"
-            alt="logo"
-            width={500}
-            height={500}
-          />
+          <img className="logo" src="../AcademicSync2.png" alt="logo" />
         </a>
       </div>
-      <div
-        className="bt"
-        style={{ textAlign: "center", padding: "20px", borderRadius: "8px" }}
-      >
-        <button style={{ margin: "5px" }} onClick={logGoogleUser}>
-          Sign In With Google
-        </button>
-        {/* <button style={{ margin: "5px" }} onClick={SignOutUser}>
-          Sign Out
-        </button> */}
+      <div className="bt">
+        <button onClick={logGoogleUser}>Sign In With Google</button>
       </div>
     </div>
   );
