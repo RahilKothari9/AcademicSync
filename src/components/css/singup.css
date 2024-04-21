@@ -10,10 +10,10 @@
 }
 
 .logo {
+  margin-top: 100px;
   width: 500px;
   height: 500px;
   object-fit: cover;
-  padding: 100px;
   text-align: center;
 }
 
@@ -21,7 +21,14 @@
   margin: 30px;
   text-align: center;
   border-radius: 100px;
-  background-color: #ffffff;
+  background-color: #FFFFFF;
   color: #000000;
-  font-weight: 600;
+  font-weight: 700;
+  border: 2px solid transparent;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.bt button:hover {
+  transform: scale(1.05);
+  border-color: #FF0000;
 }
