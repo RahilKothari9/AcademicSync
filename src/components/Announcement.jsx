@@ -94,7 +94,7 @@ export default function Announcement() {
                     </Typography>
                   )}
                   {userInfo.role === 'Student' && (
-                    <Typography variant="h5" component="div" sx={{ flexGrow: 1, mb: 1, ml: -6, fontSize: "2em", color: colors.greenAccent[600]}}>
+                    <Typography variant="h5" component="div" sx={{ flexGrow: 1, mb: 1, fontSize: "2em", color: colors.greenAccent[600]}}>
                       {item.name}
                     </Typography>
                   )}
