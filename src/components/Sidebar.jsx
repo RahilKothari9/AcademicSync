@@ -53,6 +53,7 @@ const Sidebar = () => {
     const {currentUser} = useAuth()
     const user = currentUser
     const [userInfo, setUserInfo] = useState({role: ' ', division:' ', subdivision:' '})
+    const navigate = useNavigate();
     useEffect( () => {
         // console.log("Hi")
         const x = async()=>{
@@ -117,14 +118,16 @@ const Sidebar = () => {
                     {!isCollapsed && (
                         <Box mb="25px">
                             <Box display="flex" justifyContent="center" alignItems="center">
+                                
                                 <img
                                     alt="profile-user"
                                     width="100px"
                                     height="100px"
-                                    to="/profile"
+                                    onClick={()=>{navigate('/profile')} }
                                     src={(user.photoURL)? user.photoURL: "profile-pic.png"}
                                     style={{ cursor: "pointer", borderRadius: "50%" }}
                                 />
+                                
                             </Box>
                             <Box textAlign="center">
                                 <Typography
@@ -134,7 +137,7 @@ const Sidebar = () => {
                                     fontWeight="bold"
                                     sx={{ m: "10px 0 0 0" }}
                                 >
-                                <Link to="/profile">{user.displayName}</Link>
+                                {user.displayName}
                                 </Typography>
                                 <Typography variant="h5" color={colors.greenAccent[500]}>
                                     {userInfo.role} of {userInfo.division}-{userInfo.subdivision}

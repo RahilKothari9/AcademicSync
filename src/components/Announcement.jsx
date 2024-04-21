@@ -76,9 +76,10 @@ export default function Announcement() {
             <Grid item key={item.id} xs={12} sm={6} md={4} lg={10} sx={{ display: 'flex', justifyContent: 'center' }}>
               <Card
                 sx={{
-                  minWidth: 550,
+                  width:'60%',
                   maxWidth: '90%', // Decrease the width here
                   mb: 2,
+                  ml:8,
                   backgroundColor: colors.primary[400],
                   border: '1px solid #888',
                   boxShadow: '5px 5px 15px rgba(0, 0, 0, 0.3)'
@@ -99,7 +100,7 @@ export default function Announcement() {
                     </Typography>
                   )}
                   {userInfo.role !== 'Student' && (
-                    <Button onClick={() => handleDeleteClick(item)} sx={{ height: '25px', backgroundColor: 'red', color: 'white' }}>
+                    <Button onClick={() => handleDeleteClick(item)} sx={{ height: '25px', fontsize: "1em", backgroundColor: 'red', color: 'white' }}>
                       <DeleteIcon />
                     </Button>
                   )}
