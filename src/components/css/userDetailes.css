@@ -96,7 +96,7 @@ li{
 }
 /* <Box>
       {users.map(user => (
-        <Box key={user.id} sx={{ marginBottom: 2 }}>
+        <Box key={user.id} sx={{ marginBottom: 1.5 }}>
           <Typography variant="h6" color="error">User Details</Typography>
           <Typography variant="body1" color="error">Division: {user.division}</Typography>
           <Typography variant="body1" color="error">Subdivision: {user.subdivision}</Typography>

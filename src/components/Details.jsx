@@ -98,12 +98,12 @@ const Details = () => {
   
     <ThemeProvider theme={theme}>
     
-      <Box mt={"10vh"} padding={2} width={'50vw'} className=" form-container" sx={{margin: 'auto', position:"absolute"}}>
+      <Box mt={"10vh"} padding={2} width={'80%'} className=" form-container" sx={{margin: 'auto', position:"absolute"}}>
         <Typography variant="h3" color="white" gutterBottom align="center">
           Add Details
         </Typography>
 
-        <FormControl fullWidth sx={{ marginBottom: 2 }}>
+        <FormControl fullWidth sx={{ marginBottom: 1.5 }}>
           <InputLabel sx={{color: "white"}}>Branch</InputLabel>
           <Select
           labelStyle={{ color: '#ff0000' }}
@@ -136,7 +136,7 @@ const Details = () => {
           </Select>
         </FormControl>
 
-        <FormControl fullWidth sx={{ marginBottom: 2 }}>
+        <FormControl fullWidth sx={{ marginBottom: 1.5 }}>
           <InputLabel sx={{color: "white"}}>Semester</InputLabel>
           <Select
             value={selectedSemester}
@@ -169,7 +169,7 @@ const Details = () => {
           </Select>
         </FormControl>
 
-        <FormControl fullWidth sx={{ marginBottom: 2 }}>
+        <FormControl fullWidth sx={{ marginBottom: 1.5 }}>
           <InputLabel sx={{color: "white"}}>Division</InputLabel>
           <Select
             value={selectedDivision}
@@ -201,7 +201,7 @@ const Details = () => {
           </Select>
         </FormControl>
 
-        <FormControl fullWidth sx={{ marginBottom: 2 }}>
+        <FormControl fullWidth sx={{ marginBottom: 1.5 }}>
           <InputLabel sx={{color: "white"}}>Subdivision</InputLabel>
           <Select
             value={selectedSubdivision}
@@ -237,6 +237,7 @@ const Details = () => {
             variant="outlined"
             value={rollNumber}
             sx={{
+              mt: 4,
               width: '100%',
               '& .MuiOutlinedInput-root': { borderColor: 'primary' },
               color: "white",
