@@ -1,18 +1,27 @@
 .body {
-    margin: 0;
-    display: flex;
-    place-items: center;
-    /* background-image: url("/bg.jpg");   */
-    background-repeat: no-repeat;
-    background-size: cover;
-    min-width: 320px;
-    min-height: 100vh;
-  }
+  margin: 0;
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-width: 320px;
+  min-height: 100vh;
+}
 
+.logo {
+  width: 500px;
+  height: 500px;
+  object-fit: cover;
+  padding: 100px;
+  text-align: center;
+}
 
-  .details-container{
-    top: 50;
-    left: 50%;
-    position: absolute;
-     transform: translate(-50%,-50%); 
-  }
+.bt button {
+  margin: 30px;
+  text-align: center;
+  border-radius: 100px;
+  background-color: #ffffff;
+  color: #000000;
+  font-weight: 600;
+}
