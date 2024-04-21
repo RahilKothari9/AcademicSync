@@ -1,12 +1,15 @@
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Avatar, Button, Card, CardContent, CardHeader, Container, Divider, Grid, IconButton, List, ListItem, ListItemAvatar, ListItemSecondaryAction, ListItemText, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
+import { useAuth } from '../contexts/AuthProvider';
 
 const Profile = ({ name = 'John Doe', surname = '', headline = '', ...otherProps }) => {
   const [experience, setExperience] = useState(['Company A - Position A', 'Company B - Position B']);
-  const [education, setEducation] = useState(['Your Education Details']);
+  const [education, setEducation] = useState();
   const [newExperience, setNewExperience] = useState('');
   const [newEducation, setNewEducation] = useState('');
+  const { currentUser } = useAuth();
+  // console.log(currentUser)
 
   const addExperience = () => {
     setExperience([...experience, newExperience]);
@@ -34,49 +37,22 @@ const Profile = ({ name = 'John Doe', surname = '', headline = '', ...otherProps
       </Typography> 
       
         <Grid item xs={12} md={4} sx={{display: 'flex', flexDirection:'column', justifyContent: 'center', alignItems: 'center',}}>
-          <Avatar alt="Profile Picture" src="https://zos.alipay.com/v2/avatar_signin.svg" style={{ width: 180, height: 180 }} /> {/* Replace with actual image URL */}
-          <Typography variant="h2">{name}</Typography>
+          <Avatar alt="Profile Picture" src={currentUser.photoURL} style={{ width: 140, height: 140 }} /> {/* Replace with actual image URL */}
+          <Typography variant="h2" sx={{mt:2, mb: 4}}>{currentUser.displayName}</Typography>
           <Typography>{headline}</Typography>
-          <Button variant="contained" color="secondary" sx={{margin: '3%'}}>Connect</Button>
+    
         </Grid>
         <Grid item xs={12} md={8}>
           {/* Experience, Education, Contact Information sections */}
-          <Card style={{ marginBottom: 20,  }}>
-            <CardHeader title="Experience" />
-            <CardContent>
-              <List>
-                {experience.map((item, index) => (
-                  <ListItem key={index}>
-                    <ListItemAvatar>
-                      <Avatar>{item[0]}</Avatar>
-                    </ListItemAvatar>
-                    <ListItemText primary={item} />
-                    <ListItemSecondaryAction>
-                      <IconButton edge="end" aria-label="delete" onClick={() => deleteExperience(index)}>
-                        <DeleteIcon />
-                      </IconButton>
-                    </ListItemSecondaryAction>
-                  </ListItem>
-                ))}
-              </List>
-              <TextField
-                value={newExperience}
-                onChange={(e) => setNewExperience(e.target.value)}
-                placeholder="Add new experience"
-                multiline
-                rows={1}
-                style={{ width: 'calc(100% - 80px)' }}
-              />
-              <Button sx={{marginTop: '3%'}} variant="contained" color="primary" onClick={addExperience} disabled={!newExperience}>
-                Add Experience
-              </Button>
-            </CardContent>
-          </Card>
+          
 
           <Divider />
 
+         
+
+          <Divider />
           <Card style={{ marginBottom: 20,  }}>
-            <CardHeader title="Education" />
+            <CardHeader title="Achievements" />
             <CardContent>
               <List>
                 {education.map((item, index) => (
@@ -93,43 +69,13 @@ const Profile = ({ name = 'John Doe', surname = '', headline = '', ...otherProps
               <TextField
                 value={newEducation}
                 onChange={(e) => setNewEducation(e.target.value)}
-                placeholder="Add new education"
+                placeholder="Add new achievements"
                 multiline
                 rows={1}
                 style={{ width: 'calc(100% - 80px)' }}
               />
               <Button variant="contained" color="primary" sx={{marginTop: '3%'}} onClick={addEducation} disabled={!newEducation}>
-                Add Education
-              </Button>
-            </CardContent>
-          </Card>
-
-          <Divider />
-          <Card style={{ marginBottom: 20,  }}>
-            <CardHeader title="Education" />
-            <CardContent>
-              <List>
-                {education.map((item, index) => (
-                  <ListItem key={index}>
-                    <ListItemText primary={item} />
-                    <ListItemSecondaryAction>
-                      <IconButton edge="end" aria-label="delete" onClick={() => deleteEducation(index)}>
-                        <DeleteIcon />
-                      </IconButton>
-                    </ListItemSecondaryAction>
-                  </ListItem>
-                ))}
-              </List>
-              <TextField
-                value={newEducation}
-                onChange={(e) => setNewEducation(e.target.value)}
-                placeholder="Add new skills"
-                multiline
-                rows={1}
-                style={{ width: 'calc(100% - 80px)' }}
-              />
-              <Button variant="contained" color="primary" sx={{marginTop: '3%'}} onClick={addEducation} disabled={!newEducation}>
-                Add Skills
+                Add Achievements
               </Button>
             </CardContent>
           </Card>

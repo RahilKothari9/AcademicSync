@@ -92,19 +92,22 @@ button:focus-visible {
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Source+Sans+Pro:wght@400;600;700&display=swap');
 
 html, body, #root, .app, .content {
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
   font-family: 'Source Sans Pro', sans-serif;
+  overflow-y: initial; 
+  position: absolute;
+  overflow-x: hidden !important;
 }
 
 .app {
   display: flex;
-  position: relative;
+  position: absolute;
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 3px;
 }
 
 ::-webkit-scrollbar-track {
