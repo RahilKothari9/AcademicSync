@@ -1,5 +1,5 @@
-import { Box, IconButton, useTheme } from "@mui/material";
-import { useContext } from "react";
+import { Box, IconButton, useTheme, Dialog, DialogTitle, DialogContent, DialogActions, Button, colors, Popover, List, ListItem, ListItemText, Typography } from "@mui/material";
+import { useContext, useState } from "react";
 import { ColorModeContext, tokens } from "../theme";
 import InputBase from "@mui/material/InputBase";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
@@ -7,12 +7,32 @@ import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
+import { useNavigate, useLocation } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
+import { getAuth, signOut } from "firebase/auth";
 
 const Topbar = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     const colorMode = useContext(ColorModeContext);
+    const navigate = useNavigate();
+    const auth = getAuth();
+    const [dialogOpen, setDialogOpen] =useState();
+    const handleDialogOpen = () => {
+        setDialogOpen(true);
+      };
+    
+      const handleDialogClose = () => {
+        setDialogOpen(false);
+      };
+      const handleLogout = () => {
+        setTimeout(() => {
+            signOut(auth);
+          navigate("/");
+        }, 1000);
+    
+        handleDialogClose();
+      }
 
     const changeBackgroundColor = () => {
         if (theme.palette.mode === "dark") {
@@ -23,9 +43,9 @@ const Topbar = () => {
     };
 
     return (
-        <Box display="flex" justifyContent="space-between" p={2}>
+        <Box display="flex" justifyContent="end" p={2}>
         {/* SEARCH BAR */}
-        <Box
+        {/* <Box
             display="flex"
             backgroundColor={colors.primary[400]}
             borderRadius="3px"
@@ -34,7 +54,7 @@ const Topbar = () => {
             <IconButton type="button" sx={{ p: 1 }}>
             <SearchIcon />
             </IconButton>
-        </Box>
+        </Box> */}
 
         {/* ICONS */}
         <Box display="flex">
@@ -52,9 +72,19 @@ const Topbar = () => {
             <SettingsOutlinedIcon />
             </IconButton>
             <IconButton>
-            <PersonOutlinedIcon />
+            <PersonOutlinedIcon  onClick={handleDialogOpen}/>
             </IconButton>
         </Box>
+                <Dialog open={dialogOpen} onClose={handleDialogClose}>
+                <DialogTitle>Logout</DialogTitle>
+                <DialogContent>Are you sure you want to logout?</DialogContent>
+                <DialogActions>
+                <Button onClick={handleDialogClose}>Cancel</Button>
+                <Button color="error" onClick={handleLogout}>
+                    Logout
+                </Button>
+                </DialogActions>
+            </Dialog>
         </Box>
     );
 };

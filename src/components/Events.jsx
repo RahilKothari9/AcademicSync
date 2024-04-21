@@ -116,7 +116,7 @@ export default function Events() {
                 <CardContent sx={{ textAlign: 'center' }}>
                 <Box sx={{ display: 'flex', flexDirection: 'row' }}>
                   {/* Button to request email */}
-              <IconButton onClick={() => handleEmailRequest(item)} sx={{ }}>
+              <IconButton onClick={() => handleEmailRequest(item)} sx={{mt:-3 }}>
                     <EmailIcon />
                   </IconButton>
                   {/* Rest of the content */}
