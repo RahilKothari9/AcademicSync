@@ -132,7 +132,7 @@ const StudentSidebar = () => {
                                     fontWeight="bold"
                                     sx={{ m: "10px 0 0 0" }}
                                 >
-                                {user.displayName}
+                                <Link to="/profile">{user.displayName}</Link>
                                 </Typography>
                                 <Typography variant="h5" color={colors.greenAccent[500]}>
                                     {userInfo.role} of {userInfo.division}-{userInfo.subdivision}

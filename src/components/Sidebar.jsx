@@ -121,6 +121,7 @@ const Sidebar = () => {
                                     alt="profile-user"
                                     width="100px"
                                     height="100px"
+                                    to="/profile"
                                     src={(user.photoURL)? user.photoURL: "profile-pic.png"}
                                     style={{ cursor: "pointer", borderRadius: "50%" }}
                                 />
@@ -128,11 +129,12 @@ const Sidebar = () => {
                             <Box textAlign="center">
                                 <Typography
                                     variant="h3"
+                                    
                                     color={colors.grey[100]}
                                     fontWeight="bold"
                                     sx={{ m: "10px 0 0 0" }}
                                 >
-                                {user.displayName}
+                                <Link to="/profile">{user.displayName}</Link>
                                 </Typography>
                                 <Typography variant="h5" color={colors.greenAccent[500]}>
                                     {userInfo.role} of {userInfo.division}-{userInfo.subdivision}

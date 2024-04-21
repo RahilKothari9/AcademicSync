@@ -2,10 +2,15 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { Avatar, Button, Card, CardContent, CardHeader, Container, Divider, Grid, IconButton, List, ListItem, ListItemAvatar, ListItemSecondaryAction, ListItemText, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthProvider';
+import { useEffect } from 'react';
+import { collection, deleteDoc, doc, getDocs, query, where } from "firebase/firestore";
+import { db } from '../firebase';
 
 const Profile = ({ name = 'John Doe', surname = '', headline = '', ...otherProps }) => {
+  const [error, setError] = useState("");
+
   const [experience, setExperience] = useState(['Company A - Position A', 'Company B - Position B']);
-  const [education, setEducation] = useState();
+  const [education, setEducation] = useState([]);
   const [newExperience, setNewExperience] = useState('');
   const [newEducation, setNewEducation] = useState('');
   const { currentUser } = useAuth();
@@ -28,6 +33,25 @@ const Profile = ({ name = 'John Doe', surname = '', headline = '', ...otherProps
   const deleteEducation = index => {
     setEducation(education.filter((_, i) => i !== index));
   };
+
+  const [userInfo, setUserInfo] = useState({branch: "", role: ' ', division:' ', subdivision:' ', semester: ''});
+  useEffect(()=>{
+    const getUserInfo = async () => {
+      try {
+        const q = query(collection(db, "details"), where("userId", "==", currentUser.uid));
+        const querySnapshot = await getDocs(q);
+        const userInfo1 = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }))[0];
+        setUserInfo(userInfo1);
+        console.log(userInfo)
+        
+      } catch (error) {
+        console.error('Error getting user info:', error);
+        setError('Failed to get user info');
+      }
+    };
+
+    getUserInfo()
+  }, [])
 
   return (
     <Container style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%'}}>
@@ -81,10 +105,17 @@ const Profile = ({ name = 'John Doe', surname = '', headline = '', ...otherProps
           </Card>
           <Divider/>
           <Card style={{ marginBottom: 20,  }}>
-            <CardHeader title="Contact Information" />
+            
             <CardContent>
-              <Typography>Your Contact Information (Edit this section)</Typography>
+              <Typography variant="h4" mb="2">User Information </Typography>
               {/* Add form or list for contact details */}
+              <Typography>Branch: {userInfo.branch} </Typography>
+              <Typography>Division: {userInfo.division}</Typography>
+              <Typography>Subdivision: {userInfo.subdivision} </Typography>
+              <Typography>Semester: {userInfo.semester}</Typography>
+              
+              
+              
             </CardContent>
           </Card>
         </Grid>
