@@ -1,4 +1,4 @@
-import { Alert, Button, TextField } from '@mui/material';
+import { Alert, Button, TextField, Box } from '@mui/material';
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from "react-router-dom";
@@ -65,6 +65,7 @@ const CreateAnnouncement= () => {
     return (
         <AuthProvider>
             <React.Fragment>
+                <Box sx={{ml: 25}}>
             <div className='formWrapper'>
             <h2>Create Announcement</h2>
             
@@ -109,7 +110,7 @@ const CreateAnnouncement= () => {
                 
             </form>
             </div>
-     
+            </Box>
         </React.Fragment>
         </AuthProvider>
         

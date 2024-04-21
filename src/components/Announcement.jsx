@@ -68,7 +68,8 @@ export default function Announcement() {
   };
 
   return (
-    <div sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+    <Box sx={{ml:25}}>
+    <div sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
       {error && <Alert onClose={() => { setError("") }} severity="error" sx={{ mb: 2 }}>{error}</Alert>}
       <div className='centerer' sx={{ width: '80%', margin: '0 auto', overflow: "scroll" }}>
         <div className='foodwrapper'>
@@ -141,5 +142,6 @@ export default function Announcement() {
         </DialogActions>
       </Dialog>
     </div>
+    </Box>
   )
 }

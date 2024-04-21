@@ -95,6 +95,7 @@ export default function Events() {
   }, [currentUser.uid]);
 
   return (
+    <Box sx={{ml:30}}>
     <div sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
       {error && <Alert onClose={() => {setError("")}} severity="error" sx={{mb: 2}}>{error}</Alert>}
       <div className='centerer' sx={{ width: '80%', margin: '0 auto', overFlow: "scroll"}}>
@@ -186,5 +187,6 @@ export default function Events() {
         </DialogActions>
       </Dialog>
     </div>
+    </Box>
   );
 }

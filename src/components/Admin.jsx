@@ -52,7 +52,7 @@ const AdminDashboard = () => {
     }
   };
   return (
-    <Container>
+    <Container sx={{ml:35}}>
       <Typography variant="h3" gutterBottom>
         Admin Dashboard
       </Typography>
@@ -105,7 +105,7 @@ const AdminDashboard = () => {
         </Grid>
       </Grid>
       {loading ? (
-        <Typography variant="body1">Loading...</Typography>
+        <Typography variant="body1"></Typography>
       ) : (
         <Grid container spacing={3}>
           <Grid item xs={12}>

@@ -107,7 +107,7 @@ const CreateEvent = () => {
         flexDirection: 'column',
         alignItems: 'center',
         padding: '20px',
-       
+        ml: 25
        
       }}>
       <Typography variant="h6" gutterBottom>
@@ -199,7 +199,7 @@ const CreateEvent = () => {
       multiple
       id="file-input"
     />
-    <label htmlFor="file-input">Drag and drop files here or click to select</label>
+    <label htmlFor="file-input">Drag and drop PDF files here or click to select</label>
   </div>
 </Grid>
         </Grid>
