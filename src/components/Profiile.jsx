@@ -64,7 +64,7 @@ const Profile = ({ name = 'John Doe', surname = '', headline = '', ...otherProps
                 onChange={(e) => setNewExperience(e.target.value)}
                 placeholder="Add new experience"
                 multiline
-                rows={4}
+                rows={1}
                 style={{ width: 'calc(100% - 80px)' }}
               />
               <Button sx={{marginTop: '3%'}} variant="contained" color="primary" onClick={addExperience} disabled={!newExperience}>
@@ -95,7 +95,7 @@ const Profile = ({ name = 'John Doe', surname = '', headline = '', ...otherProps
                 onChange={(e) => setNewEducation(e.target.value)}
                 placeholder="Add new education"
                 multiline
-                rows={4}
+                rows={1}
                 style={{ width: 'calc(100% - 80px)' }}
               />
               <Button variant="contained" color="primary" sx={{marginTop: '3%'}} onClick={addEducation} disabled={!newEducation}>
@@ -105,7 +105,35 @@ const Profile = ({ name = 'John Doe', surname = '', headline = '', ...otherProps
           </Card>
 
           <Divider />
-
+          <Card style={{ marginBottom: 20,  }}>
+            <CardHeader title="Education" />
+            <CardContent>
+              <List>
+                {education.map((item, index) => (
+                  <ListItem key={index}>
+                    <ListItemText primary={item} />
+                    <ListItemSecondaryAction>
+                      <IconButton edge="end" aria-label="delete" onClick={() => deleteEducation(index)}>
+                        <DeleteIcon />
+                      </IconButton>
+                    </ListItemSecondaryAction>
+                  </ListItem>
+                ))}
+              </List>
+              <TextField
+                value={newEducation}
+                onChange={(e) => setNewEducation(e.target.value)}
+                placeholder="Add new skills"
+                multiline
+                rows={1}
+                style={{ width: 'calc(100% - 80px)' }}
+              />
+              <Button variant="contained" color="primary" sx={{marginTop: '3%'}} onClick={addEducation} disabled={!newEducation}>
+                Add Skills
+              </Button>
+            </CardContent>
+          </Card>
+          <Divider/>
           <Card style={{ marginBottom: 20,  }}>
             <CardHeader title="Contact Information" />
             <CardContent>
