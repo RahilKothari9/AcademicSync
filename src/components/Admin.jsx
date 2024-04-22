@@ -52,7 +52,7 @@ const AdminDashboard = () => {
     }
   };
   return (
-    <Container sx={{ml:35}}>
+    <Container sx={{ml:'20%'}}>
       <Typography variant="h3" gutterBottom>
         Admin Dashboard
       </Typography>
