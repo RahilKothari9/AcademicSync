@@ -68,7 +68,7 @@ export default function Announcement() {
   };
 
   return (
-    <Box sx={{}}>
+    <Box sx={{ml:'5%'}}>
     <div sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
       {error && <Alert onClose={() => { setError("") }} severity="error" sx={{ mb: 2 }}>{error}</Alert>}
       <div className='centerer' sx={{ width: '80%', margin: '0 auto', overflow: "scroll" }}>
