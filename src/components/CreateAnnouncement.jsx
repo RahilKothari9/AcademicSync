@@ -29,7 +29,7 @@ const CreateAnnouncement= () => {
         
         const userList = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id })); 
         setUserInfo(userList[0])
-        console.log(userInfo)
+        // console.log(userInfo)
       }
       x();
     //   console.log(userInfo)
@@ -65,7 +65,7 @@ const CreateAnnouncement= () => {
     return (
         <AuthProvider>
             <React.Fragment>
-                <Box sx={{ml: 25}}>
+                <Box sx={{ml: '15%'}}>
             <div className='formWrapper'>
             <h2>Create Announcement</h2>
             

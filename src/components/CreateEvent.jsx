@@ -25,7 +25,7 @@ const CreateEvent = () => {
       
       const userList = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id })); 
       setUserInfo(userList[0])
-      console.log(userInfo)
+      // console.log(userInfo)
     }
     x();
   //   console.log(userInfo)
@@ -107,7 +107,7 @@ const CreateEvent = () => {
         flexDirection: 'column',
         alignItems: 'center',
         padding: '20px',
-        ml: 25
+        ml: '20%'
        
       }}>
       <Typography variant="h6" gutterBottom>
